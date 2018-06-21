@@ -50,17 +50,22 @@ function get_clients(cb){
     });
 
 }
-
-app.get('/get_hotels', function(req,res){
-   
-    // mongodb vers hotels
-    //
+app.get('/hotels', function (req, res) {
     get_hotels(function(hotels){
         console.log(hotels);
         res.render('hotel', {
             data: hotels
         });
         // res.send(hotels);
+    });
+})
+app.get('/get_hotels', function(req,res){
+   
+    // mongodb vers hotels
+    //
+    get_hotels(function(hotels){
+        console.log(hotels);
+        res.send(hotels);
     });
 
     //
