@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 4013;
+var port = 3013;
 
 
 app.use(express.static('static'));
@@ -111,3 +111,6 @@ MongoClient.connect(url, function (err, db) {
     db.close();
 });
 
+app.listen(port, function(){
+    console.log('on')
+})
