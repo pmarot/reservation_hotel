@@ -111,4 +111,16 @@
 ### /!\ DANS LE DOUTE DEMANDER A UN AMI :-)
 
 
+#### UTILISER LA BASE DE DONNEES
 
+1 - Ouvrir un terminal et ecrire mongo puis valider avec la touche entrée.
+
+2 - use [reservation] sans les crochets.
+    - les collections créées :
+        hotels
+        clients
+        secteurs 
+
+
+
+2 - Connection à la base de données OK 
