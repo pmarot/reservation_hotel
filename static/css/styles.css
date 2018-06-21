@@ -9,7 +9,7 @@
     rgba(0, 0, 0, 0.65)
     ), url('../img/chambre.jpg') no-repeat;
     background-size: cover;
-    height: 600px;
+    height: 500px;
     color:#fff;  
 } 
 /*========================================
@@ -17,6 +17,13 @@
 =========================================*/        
 header {
     background-color: #a48c68 ;
+}
+.bg-form {
+    background: rgba(164, 140, 104, 0.60);
+}
+
+h1 {
+    font-family: 'Julius Sans One', sans-serif;
 }
 
 .icon {
