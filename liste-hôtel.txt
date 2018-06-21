@@ -13,3 +13,12 @@ La Terass secteur:Nord-Est https://www.bloomberg.com/features/2016-hawaii-millio
 Corail secteur:Nord-Ouest https://exp.cdn-hotels.com/hotels/1000000/30000/28700/28605/cde55180_z.jpg
 Mariana Bay secteur:Nord-Est https://i.redd.it/gz07h79r2x1z.jpg
 MONGO secteur:Nord-Est https://www.fanaticsports.co.ke/wp-content/uploads/2015/10/LUX-Le-Morne7.jpg
+
+
+    db.secteurs.insert({"id": 0,"Nom": "Nord"});
+  db.secteurs.insert({"id": 1,"Nom": "Sud"});
+  db.secteurs.insert({"id": 2,"Nom": "Est"});
+  db.secteurs.insert({"id": 3,"Nom": "Ouest"});
+
+
+  
