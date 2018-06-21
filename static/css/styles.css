@@ -1,21 +1,26 @@
 .container-fluid {
-    padding: 0;
+    padding-left: 0!important;
+    padding-right: 0!important;
 }
 
+.form{
+    background:linear-gradient(
+    rgba(0, 0, 0, 0.65), 
+    rgba(0, 0, 0, 0.65)
+    ), url('../img/chambre.jpg') no-repeat;
+    background-size: cover;
+    height: 600px;
+    color:#fff;  
+} 
 /*========================================
         IMAGE SLIDE/CAROUSSEL
 =========================================*/        
-.img_slide {
-    height: 550px;
-}       
+header {
+    background-color: #a48c68 ;
+}
 
 .icon {
     font-size: 30px;
-}
-
-header {
-    background-color:#a48c68;
-    color : white;
 }
 headings {
     color: #a48c68 ;
