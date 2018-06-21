@@ -55,7 +55,13 @@ h1 {
     font-family: 'Julius Sans One', sans-serif;
 }
 
+/*====================================
+            FOOTER
+======================================*/
 
+.social .navbar-nav .nav-link {
+    margin-left: 5px;
+}
 
 .icon {
     font-size: 30px;
