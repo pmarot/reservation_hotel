@@ -58,7 +58,9 @@ h1 {
 /*====================================
             FOOTER
 ======================================*/
-
+.logo-footer {
+    font-size: 25px;
+}
 .social .navbar-nav .nav-link {
     margin-left: 5px;
 }
