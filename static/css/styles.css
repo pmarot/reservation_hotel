@@ -1,27 +1,75 @@
+
+body {
+    font-size: 17px;
+}
+
 .container-fluid {
     padding-left: 0!important;
     padding-right: 0!important;
 }
 
+ 
+/*========================================
+       HEADER
+=========================================*/        
+header {
+    background-color: #a48c68 ;
+}
+
+
+/******** MENU PRINCIPAL ******/
+.navbar-dark .navbar-nav .nav-link {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    margin-left: 3em;
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.navbar-dark .navbar-nav .active >.nav-link {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    background: rgba(164, 140, 104, 0.9);
+    width: 100%;
+}
+/***** formulaire ******/
+.bg-form {
+    background: rgba(164, 140, 104, 0.60);
+}
 .form{
     background:linear-gradient(
     rgba(0, 0, 0, 0.65), 
     rgba(0, 0, 0, 0.65)
     ), url('../img/chambre.jpg') no-repeat;
     background-size: cover;
-    height: 600px;
+    background-attachment: fixed;
+    height: 500px;
     color:#fff;  
-} 
-/*========================================
-        IMAGE SLIDE/CAROUSSEL
-=========================================*/        
-header {
-    background-color: #a48c68 ;
+}
+
+h1 {
+    font-family: 'Julius Sans One', sans-serif;
+}
+
+/*====================================
+            FOOTER
+======================================*/
+.logo-footer {
+    font-size: 25px;
+}
+.social .navbar-nav .nav-link {
+    margin-left: 5px;
 }
 
 .icon {
     font-size: 30px;
 }
+
+/*
 headings {
     color: #a48c68 ;
 }
@@ -45,7 +93,7 @@ footer {
     background-color:#1b1b1b ;
     color:white;
 }
-
+*/
 
 
 
