@@ -53,18 +53,31 @@
               </nav>
           </div>
           <!--CAROUSSEL-->
-          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100 img_slide" src="img/chambre.jpg" alt="First slide">
+          <div class="container">
+              <div class="row col-md-8 mx-auto">
+                    <div class="form-group col-md-6">
+                        <label for="">Date d'arrivé</label>
+                        <input type="date" name="" id="arrive" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Date de départ</label>
+                        <input type="date" name="" id="depart" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Sélectionner le secteur</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Choisir</option>
+                        <option value="1">Nord</option>
+                        <option value="2">Ouest</option>
+                        <option value="3">Sud</option>
+                        <option value="3">Est</option>
+                    </select>
+                    <div class="form-group m-3">
+                        <button type="button" class="btn btn-success">Envoyer</button>
+                    </div>
               </div>
-             <!-- <div class="carousel-item">
-                <img class="d-block w-100" src="static/img/lux.jpeg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="staticimg/hotel-le-cilaos.jpg" alt="Third slide">
-              </div>-->
-            </div>
+              
           </div>
       </header>
       <!--MAIN WHITH HOTELS-->
