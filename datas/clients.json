@@ -1,0 +1,16 @@
+{
+    "clients": [
+    {
+      "id": 0,
+      "Nom": "Pat",
+      "Prénom": "Mat",
+      "Carte de crédit": 0
+    },
+    {
+      "id": 1,
+      "Nom": "Sat",
+      "Prénom": "Cat",
+      "Carte de crédit": 1
+    }
+  ]
+}
