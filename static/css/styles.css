@@ -4,7 +4,7 @@
 
 /*========================================
         IMAGE SLIDE/CAROUSSEL
-==========================================*/
+=========================================*/        
 .img_slide {
     height: 550px;
 }       
@@ -12,3 +12,37 @@
 .icon {
     font-size: 30px;
 }
+
+header {
+    background-color:#a48c68;
+    color : white;
+}
+headings {
+    color: #a48c68 ;
+}
+
+fichehotel {
+    background-color : #45474a;
+    color:white;
+}
+
+fichehotel boutons {
+    background-color : #a48c68;
+    color:white;
+
+}
+
+fichehotel etoiles {
+    color: #a48c68 ;
+}
+
+footer {
+    background-color:#1b1b1b ;
+    color:white;
+}
+
+
+
+
+
+
