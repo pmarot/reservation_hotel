@@ -1,0 +1,18 @@
+{
+    "Hotels": [
+      {
+        "id": 0,
+        "id_secteur": 0,
+        "Nom": "Toto",
+        "img": "nom_img.jpeg",
+        "Nb_etoiles": 2
+      },
+      {
+        "id": 1,
+        "id_secteur": 0,
+        "Nom": "Tata",
+        "img": "nom_img.jpeg",
+        "Nb_etoiles": 3
+      }
+    ]
+  }

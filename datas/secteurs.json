@@ -1,0 +1,13 @@
+{
+    "Secteurs": [
+        {
+          "id": 0,
+          "Nom": "Ouest"
+        },
+        {
+          "id": 1,
+          "Nom": "Nord"
+        }
+      ]
+    }
+    
