@@ -3,11 +3,11 @@
     padding-right: 0!important;
 }
 
-header{
+.form{
     background:linear-gradient(
-    rgba(0, 0, 0, 0.5), 
-    rgba(0, 0, 0, 0.5)
-    ), url('../static/img/chambre.jpg') no-repeat;
+    rgba(0, 0, 0, 0.65), 
+    rgba(0, 0, 0, 0.65)
+    ), url('../img/chambre.jpg') no-repeat;
     background-size: cover;
     height: 600px;
     color:#fff;  
@@ -15,13 +15,12 @@ header{
 /*========================================
         IMAGE SLIDE/CAROUSSEL
 =========================================*/        
+header {
+    background-color: #a48c68 ;
+}
 
 .icon {
     font-size: 30px;
-}
-
-header {
-    background-color:#a48c68;
 }
 headings {
     color: #a48c68 ;
