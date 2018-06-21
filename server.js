@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3013;
+var port = 4013;
 
 
 app.use(express.static('static'));
@@ -12,9 +12,15 @@ app.get('/', function(req,res){
     res.sendFile(__dirname+'/index.html')
 });
 
+
+// connexion a bdd
+var MongoClient = require('mongodb').MongoClient
+    , assert = require('assert');
+
 app.get('/get_clients', function(req,res){
    
     // mongodb vers clients
+
 
 });
 
@@ -30,8 +36,14 @@ app.get('/get_secteurs', function(req,res){
 
 });
 
-// port d'écoute du serveur
+// Connection URL
+var url = 'mongodb://localhost:27017/reservation';
 
-app.listen(port, function(){
-    console.log('the port is on')
-})
+// Use connect method to connect to the server
+MongoClient.connect(url, function (err, db) {
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+
+    db.close();
+});
+
