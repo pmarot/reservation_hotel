@@ -55,7 +55,7 @@
 
     Idriss: Tableau Bootstrap 
 
-    Alison : formulaire ajout de secteur 
+    Alison : formulaire ajout de secteur Ok
  
     J-fred: structure de fichiers nodejs 
 
