@@ -74,6 +74,7 @@
 ###
 #Templating - EJS
     -Le templating permet de passer les varibables serveur coté views
+    -Pour avoir un exemple vous pouvez regarder dans le dossier views/hotel.ejs
     -Pour plus d'information je vous donne le lien de la doc : http://ejs.co/
 # Démarrage du projet
     - Fork du projet initial sur votre compte github
