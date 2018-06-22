@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3012;
+var port = 3009;
 var bodyParser = require('body-parser');
 // connexion a bdd
 const mongodb = require('mongodb');
@@ -162,7 +162,7 @@ app.get('/admin/ajout-hotel', function (req, res) {
 });
 
 
-// A REVOIR - ne récupère pas les données dans newvalues
+//Éditer les données des hôtels
 
 app.put('/update', function (req, res) {
 
@@ -171,11 +171,8 @@ app.put('/update', function (req, res) {
     var image = req.body.donnee3;
     var mark = parseInt(req.body.donnee4);
     var secteur = parseInt(req.body.donnee5);
-    // var myquery = { "id" : monid };
-    console.log(monid);
 
     var newvalues =  { $set: { 'Nom': name, 'img': image, 'id_secteur': secteur, 'Nb_etoiles': mark } };
-    // console.log("/update =>  " + JSON.parse(newvalues));
 
 
     MongoClient.connect(url, function (err, database) {
@@ -192,13 +189,39 @@ app.put('/update', function (req, res) {
             res.send('ok');
             console.log("1 document inserted");
             database.close();
-
         });
+    });
+});
 
+//Ajouter un nouvel hôtel
+app.post('/add', function (req, res) {
+
+    var monid = parseInt(req.body.donnee1);
+    var name = req.body.donnee2;
+    var image = req.body.donnee3;
+    var mark = parseInt(req.body.donnee4);
+    var secteur = parseInt(req.body.donnee5);
+    var newvalues =  {'id':monid, 'Nom': name, 'img': image, 'id_secteur': secteur, 'Nb_etoiles': mark } ;
+
+
+    MongoClient.connect(url, function (err, database) {
+        if (err) throw err;
+        var dbo = database.db("reservation");
+
+        dbo.collection("hotels").insertOne( newvalues, function (err, result) {
+            if (err){
+                res.send('error');
+            }
+            res.send('ok');
+            console.log("1 document inserted");
+            database.close();
+        });
     });
     //on est gentil on repond
     // res.send("toto");
 });
+
+
 
 app.get('/admin/hotels', function (req, res) {
     get_hotels(function(hotels){
