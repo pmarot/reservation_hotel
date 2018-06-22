@@ -1,12 +1,17 @@
 // initialisation du server
 const express = require('express');
+const bodyParser = require("body-parser");
 const app = express();
-var port = 3012;
+var port = 4013;
 // connexion a bdd
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
 
+// Connection URL
+const url = 'mongodb://localhost:27017/reservation';
+
 app.use(express.static('static'));
+app.use(bodyParser.urlencoded({ extended : true}));
 
 // utilisation du moteur de rendu ejs
 app.set('view engine', 'ejs');
@@ -116,8 +121,7 @@ function get_secteurs(cb){
 
 }
 
-// Connection URL
-var url = 'mongodb://localhost:27017/reservation';
+
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function (err, db) {
@@ -136,27 +140,37 @@ app.get('/admin/ajout-hotel', function (req, res) {
 
 app.put('/update', function (req, res) {
 
-    MongoClient.connect(url, function (err, db) {
+    var monid = req.body.donnee1;
+    var name = req.body.donnee2;
+    var image = req.body.donnee3;
+    var mark = req.body.donnee4;
+    var secteur = req.body.donnee5;
+    var myquery = { id: monid };
+    
+    var newvalues = { $set: { Nom: name, img: image, id_secteur: secteur, Nb_etoiles: mark } };
+    // console.log("/update =>  " + JSON.parse(newvalues));
+
+
+    MongoClient.connect(url, function (err, database) {
         if (err) throw err;
-        var dbo = db.db("reservation");
+        var dbo = database.db("reservation");
 
-        var monid = req.body.donnee1;
-        var name = req.body.donnee2;
-        var image = req.body.donnee3;
-        var mark = req.body.donnee4;
-        var secteur = req.body.donnee5;
-
-
-        var myquery = { id: monid };
-        var newvalues = { $set: { Nom: name, img: image, id_secteur: secteur, Nb_etoiles: mark } };
-        console.log(newvalues);
+       console.log(newvalues);
         dbo.collection("hotels").updateOne(myquery, newvalues, function (err, result) {
-            if (err) throw err;
+            // if (err) throw err;
+            if (err){
+                res.send('error');   
+            }
+
+            res.send('ok');
             console.log("1 document inserted");
-            db.close()
+            database.close();
 
         });
+        
     });
+    //on est gentil on repond
+    // res.send("toto");
 });
 
 
