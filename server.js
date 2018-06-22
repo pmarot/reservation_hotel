@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3012;
+var port = 3005;
 var bodyParser = require('body-parser');
 // connexion a bdd
 var MongoClient = require('mongodb').MongoClient
@@ -24,13 +24,13 @@ app.get('/template', function (req, res) {
 });
 
 //afficher l'index
-app.get('/', function(req,res){
-    get_hotels(function (result) {
-        res.render('index',{
-            hotel: result
-        });
-    }) ;
-});
+// app.get('/', function(req,res){
+//     get_hotels(function (result) {
+//         res.render('index',{
+//             hotel: result
+//         });
+//     }) ;
+// });
 
 app.get('/get_clients', function(req,res){
 
@@ -61,7 +61,7 @@ function get_clients(cb){
 // sur la route /hotels , j'envoie une réponse qui fait un rendu
 // sur hotel qui se trouve dans views/hotels et je passe les data
 // que j'ai récupéré dans la fonction get_clients()
-app.get('/hotels', function (req, res) {
+app.get('/', function (req, res) {
     get_hotels(function(hotels){
         //console.log(hotels);
         res.render('hotel', {
