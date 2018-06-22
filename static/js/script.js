@@ -10,7 +10,7 @@ $('document').ready(function () {
 
     
     $('#add').click(function () {
-         var val1 = $('#id-h').val();
+        var val1 = $('#id-h').val();
         var val2 = $('#name-hotel').val();
         var val3 = $('#img-hotel').val();
         var val4 = $('#mark-h').val();
