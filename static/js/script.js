@@ -44,7 +44,7 @@ $('document').ready(function () {
         console.log(hotel);
         var id_hotel = $('#selectHotel').find(':selected').data("id");
         console.log(id_hotel);
-        var url = "http://localhost:3012/reserved";
+        var url = "http://localhost:3005/reserved";
 
         if(dateArriver && dateDepart && nom && hotel && id_hotel && url !== undefined) {
             $.post(url, {
