@@ -174,9 +174,17 @@ app.put('/update', function (req, res) {
     // res.send("toto");
 });
 
+app.get('/admin/hotels', function (req, res) {
+    get_hotels(function(hotels){
+        //console.log(hotels);
+        res.render('admin/index', {
+            hotels: hotels
+        });
+        // res.send(hotels);
+    });
+});
 
 
 app.listen(port, function(){
-    console.log('the port is on')
+    console.log('the port is on');
 });
-
