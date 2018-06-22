@@ -1,17 +1,16 @@
 // initialisation du server
 const express = require('express');
-const bodyParser = require("body-parser");
 const app = express();
-var port = 4013;
+var port = 3012;
+var bodyParser = require('body-parser');
 // connexion a bdd
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
-
 // Connection URL
-const url = 'mongodb://localhost:27017/reservation';
+var url = 'mongodb://localhost:27017/reservation';
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('static'));
-app.use(bodyParser.urlencoded({ extended : true}));
 
 // utilisation du moteur de rendu ejs
 app.set('view engine', 'ejs');
@@ -26,7 +25,11 @@ app.get('/template', function (req, res) {
 
 //afficher l'index
 app.get('/', function(req,res){
-    res.sendFile(__dirname+'/index.html')
+    get_hotels(function (result) {
+        res.render('index',{
+            hotel: result
+        });
+    }) ;
 });
 
 app.get('/get_clients', function(req,res){
@@ -60,13 +63,13 @@ function get_clients(cb){
 // que j'ai récupéré dans la fonction get_clients()
 app.get('/hotels', function (req, res) {
     get_hotels(function(hotels){
-        console.log(hotels);
+        //console.log(hotels);
         res.render('hotel', {
             data: hotels
         });
         // res.send(hotels);
     });
-})
+});
 app.get('/get_hotels', function(req,res){
    
     // mongodb vers hotels
@@ -79,6 +82,28 @@ app.get('/get_hotels', function(req,res){
     //
 });
 
+app.post('/reserved', function (req, res) {
+    var nom = req.body.nom;
+    var dateArriver = req.body.dateArrive;
+    var dateDepart = req.body.dateDepart;
+    var hotel = req.body.hotel;
+    var id_hotel = req.body.id_hotel;
+    var insert = {id_hotel: id_hotel, date_debut: dateArriver, date_fin: dateDepart, nom: nom};
+    MongoClient.connect(url, function (err, database) {
+        if (err) throw err;
+        var dbo = database.db('reservation');
+        dbo.collection("reservations").insertOne(insert, function (err, data) {
+            if (err){
+                res.send("error");
+            }else {
+                res.send("success");
+            }
+            console.log("ajout réussi");
+
+        });
+        database.close();
+    })
+});
 function get_hotels(cb){
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -147,7 +172,7 @@ app.put('/update', function (req, res) {
     var secteur = parseInt(req.body.donnee5);
     // var myquery = { "id" : monid };
     console.log(monid);
-    
+
     var newvalues =  { $set: { 'Nom': name, 'img': image, 'id_secteur': secteur, 'Nb_etoiles': mark } };
     // console.log("/update =>  " + JSON.parse(newvalues));
 
@@ -160,15 +185,15 @@ app.put('/update', function (req, res) {
         dbo.collection("hotels").updateOne({id : monid}, newvalues, function (err, result) {
             // if (err) throw err;
             if (err){
-                res.send('error');   
+                res.send('error');
             }
-            
+
             res.send('ok');
             console.log("1 document inserted");
             database.close();
 
         });
-        
+
     });
     //on est gentil on repond
     // res.send("toto");
@@ -186,5 +211,5 @@ app.get('/admin/hotels', function (req, res) {
 
 
 app.listen(port, function(){
-    console.log('the port is on');
+    console.log('the port is on')
 });
