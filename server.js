@@ -140,14 +140,15 @@ app.get('/admin/ajout-hotel', function (req, res) {
 
 app.put('/update', function (req, res) {
 
-    var monid = req.body.donnee1;
+    var monid = parseInt(req.body.donnee1);
     var name = req.body.donnee2;
     var image = req.body.donnee3;
-    var mark = req.body.donnee4;
-    var secteur = req.body.donnee5;
-    var myquery = { id: monid };
+    var mark = parseInt(req.body.donnee4);
+    var secteur = parseInt(req.body.donnee5);
+    // var myquery = { "id" : monid };
+    console.log(monid);
     
-    var newvalues = { $set: { Nom: name, img: image, id_secteur: secteur, Nb_etoiles: mark } };
+    var newvalues =  { $set: { 'Nom': name, 'img': image, 'id_secteur': secteur, 'Nb_etoiles': mark } };
     // console.log("/update =>  " + JSON.parse(newvalues));
 
 
@@ -155,13 +156,13 @@ app.put('/update', function (req, res) {
         if (err) throw err;
         var dbo = database.db("reservation");
 
-       console.log(newvalues);
-        dbo.collection("hotels").updateOne(myquery, newvalues, function (err, result) {
+       //console.log(newvalues);
+        dbo.collection("hotels").updateOne({id : monid}, newvalues, function (err, result) {
             // if (err) throw err;
             if (err){
                 res.send('error');   
             }
-
+            
             res.send('ok');
             console.log("1 document inserted");
             database.close();
