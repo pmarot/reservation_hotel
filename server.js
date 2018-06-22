@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3003;
+var port = 3009;
 var bodyParser = require('body-parser');
 // connexion a bdd
 const mongodb = require('mongodb');
@@ -76,7 +76,7 @@ app.get('/get_hotels', function(req,res){
     // mongodb vers hotels
     //
     get_hotels(function(hotels){
-        console.log(hotels);
+        // console.log(hotels);
         res.send(hotels);
     });
 
@@ -162,7 +162,7 @@ app.get('/admin/ajout-hotel', function (req, res) {
 });
 
 
-//Éditer les données des hôtels 
+//Éditer les données des hôtels
 
 app.put('/update', function (req, res) {
 
@@ -179,7 +179,9 @@ app.put('/update', function (req, res) {
         if (err) throw err;
         var dbo = database.db("reservation");
 
+       //console.log(newvalues);
         dbo.collection("hotels").updateOne({id : monid}, newvalues, function (err, result) {
+            // if (err) throw err;
             if (err){
                 res.send('error');
             }
@@ -215,6 +217,8 @@ app.post('/add', function (req, res) {
             database.close();
         });
     });
+    //on est gentil on repond
+    // res.send("toto");
 });
 
 
