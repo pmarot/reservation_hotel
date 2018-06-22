@@ -126,6 +126,42 @@ MongoClient.connect(url, function (err, db) {
     db.close();
 });
 
+
+app.get('/admin/ajout-hotel', function (req, res) {
+    res.sendFile(__dirname + '/ajout-hotel.html')
+});
+
+
+// A REVOIR - ne récupère pas les données dans newvalues
+
+app.put('/update', function (req, res) {
+
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("reservation");
+
+        var monid = req.body.donnee1;
+        var name = req.body.donnee2;
+        var image = req.body.donnee3;
+        var mark = req.body.donnee4;
+        var secteur = req.body.donnee5;
+
+
+        var myquery = { id: monid };
+        var newvalues = { $set: { Nom: name, img: image, id_secteur: secteur, Nb_etoiles: mark } };
+        console.log(newvalues);
+        dbo.collection("hotels").updateOne(myquery, newvalues, function (err, result) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            db.close()
+
+        });
+    });
+});
+
+
+
 app.listen(port, function(){
     console.log('the port is on')
 });
+
