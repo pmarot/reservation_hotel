@@ -2,12 +2,11 @@
     <body>
     <% include ./partials/header.ejs %>
     <div class="container">
-        <div class="col-md-12" id="status"></div>
         <div class="row">
             <% data.forEach(function(datas){ %>
-            <div class  ="col-md-4 pb-3 pt-3">
+            <div class="col-md-4 pb-3 pt-3">
                 <div class="card" style="width: 18rem;">
-                    <img src="<%= datas.img %>" class="img-fluid w-100 h-50">
+                    <img src="<%= datas.img %>">
                     <div class="card-body text-center">
                         <h5><%= datas.Nom %></h5>
                         <div class="row justify-content-center">
@@ -29,18 +28,19 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <div class="col-md-12" id="status_<%= datas.id %>"></div>
                                     <form class="row col-md-12 mx-auto  pt-4 m-5 bg-form">
                                         <div class="form-group col-md-6">
                                             <label for="arrive">Date d'arrivé</label>
-                                            <input type="date" name="arrive" id="arrive" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                            <input type="date" name="arrive" id="arriver_<%= datas.id %>" class="form-control" placeholder="" aria-describedby="helpId" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="depart">Date de départ</label>
-                                            <input type="date" name="depart" id="depart" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                            <input type="date" name="depart" id="depart_<%= datas.id %>" class="form-control" placeholder="" aria-describedby="helpId" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="nom">Nom & Prénom </label>
-                                            <input type="texte" name="nom" id="nom" class="form-control" placeholder="" aria-describedby="helpId" required>
+                                            <input type="texte" name="nom" id="nom_<%= datas.id %>" class="form-control" placeholder="" aria-describedby="helpId" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="carte_bancaire">Carte bancaire</label>
@@ -49,13 +49,13 @@
 
                                         </div>
                                         <div class="mb-3 ml-3">
-                                            <button type="reset" id="reset" style="visibility: hidden;">reset</button>
+                                            <button type="reset" id="reset_<%= datas.id %>" style="visibility: hidden;">reset</button>
                                         </div>
                                     </form>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button id="<%= datas.id %>" class="btn btn-dark" onclick="reserver($(this).data('id'))" data-id="<%= datas._id %>">Réserver</button>
+                                    <button id="<%= datas.id %>" class="btn btn-dark reserver"  data-id="<%= datas._id %>">Réserver</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                                 </div>
                             </div>

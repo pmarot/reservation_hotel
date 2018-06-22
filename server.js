@@ -4,6 +4,7 @@ const app = express();
 var port = 3012;
 var bodyParser = require('body-parser');
 // connexion a bdd
+const mongodb = require('mongodb');
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
 // Connection URL
@@ -202,13 +203,44 @@ app.put('/update', function (req, res) {
 app.get('/admin/hotels', function (req, res) {
     get_hotels(function(hotels){
         //console.log(hotels);
-        res.render('admin/index', {
+        res.render('admin/hotels', {
             hotels: hotels
         });
         // res.send(hotels);
     });
 });
 
+app.get('/admin/', function (req, res) {
+    get_hotels(function(hotels){
+        //console.log(hotels);
+        res.render('admin/index', {
+            hotels: hotels
+        });
+        // res.send(hotels);
+    });
+});
+/**
+ * Route del d'un doc via le formulaire 
+ */
+app.delete('/hotels/:_id', function (req, res) {
+    const _id = req.params._id;
+  
+    MongoClient.connect(url, function (err, database) {
+      if (err) throw err;
+      var myquery = {
+        _id: mongodb.ObjectId(_id)
+      };
+      var dbo = database.db("reservation");
+      //console.log(newvalues);
+       dbo.collection("hotels").deleteOne(myquery, function (err, obj) {
+        if (err) throw err;
+       // console.log(obj);
+        database.close();
+      });
+    });
+      
+    res.end("id= " + _id + " supprimé");
+  });
 
 app.listen(port, function(){
     console.log('the port is on')
