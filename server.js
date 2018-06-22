@@ -50,6 +50,9 @@ function get_clients(cb){
     });
 
 }
+// sur la route /hotels , j'envoie une réponse qui fait un rendu
+// sur hotel qui se trouve dans views/hotels et je passe les data
+// que j'ai récupéré dans la fonction get_clients()
 app.get('/hotels', function (req, res) {
     get_hotels(function(hotels){
         console.log(hotels);

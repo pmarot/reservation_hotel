@@ -1,4 +1,6 @@
 $('document').ready(function () {
+    // appel de la fonction pour ajout des etoiles automatiquement pour les hotels
+    stars();
 
     var val1 = $('#id-hotel').val();
     var val2 = $('#name-hotel').val();
@@ -20,4 +22,19 @@ $('document').ready(function () {
             }
         });
     });
-})
+});
+
+// fonction etoiles pour les hotels
+function stars(){
+    $(".star").each(function(){
+        var stars = $(this).data("etoile");
+        let affiche_nbetoile;
+        affiche_nbetoile = "";
+        console.log(stars);
+        for (let i=0; i<stars; i++){
+            console.log("dans la boucle");
+            affiche_nbetoile +="<i class='fas fa-star'></i>";
+            $(this).html(affiche_nbetoile);
+        }
+    })
+}
