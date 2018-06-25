@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3009;
+var port = 3012;
 var bodyParser = require('body-parser');
 // connexion a bdd
 const mongodb = require('mongodb');
@@ -37,7 +37,7 @@ app.get('/get_clients', function(req,res){
 
     //
     get_clients(function(clients){
-        console.log(clients);
+        //console.log(clients);
         res.send(clients);
     });
 
@@ -51,7 +51,7 @@ function get_clients(cb){
         var dbo = db.db("reservation");
         dbo.collection("clients").find({}).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            //console.log(result);
             //res.send(result);
             cb(result);
             db.close();
@@ -71,6 +71,13 @@ app.get('/', function (req, res) {
         // res.send(hotels);
     });
 });
+// var test = get_hotels(function (result) {
+//     return result;
+// });
+
+app.get('/test', function (req,res) {
+
+});
 app.get('/get_hotels', function(req,res){
    
     // mongodb vers hotels
@@ -87,13 +94,14 @@ app.post('/reserved', function (req, res) {
     var nom = req.body.nom;
     var dateArriver = req.body.dateArrive;
     var dateDepart = req.body.dateDepart;
-    var hotel = req.body.hotel;
+    //var hotel = req.body.hotel;
     var id_hotel = req.body.id_hotel;
     var insert = {id_hotel: id_hotel, date_debut: dateArriver, date_fin: dateDepart, nom: nom};
     MongoClient.connect(url, function (err, database) {
         if (err) throw err;
         var dbo = database.db('reservation');
         dbo.collection("reservations").insertOne(insert, function (err, data) {
+            console.log(data);
             if (err){
                 res.send("error");
             }else {
@@ -111,7 +119,7 @@ function get_hotels(cb){
         var dbo = db.db("reservation");
         dbo.collection("hotels").find({}).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            //console.log(result);
             //res.send(result);
             cb(result);
             db.close();
@@ -125,7 +133,7 @@ app.get('/get_secteurs', function(req,res){
     // mongodb vers secteurs
     //
     get_secteurs(function(secteurs){
-        console.log(secteurs);
+        //console.log(secteurs);
         res.send(secteurs);
     });
     //
@@ -138,7 +146,7 @@ function get_secteurs(cb){
         var dbo = db.db("reservation");
         dbo.collection("secteurs").find({}).toArray(function (err, result) {
             if (err) throw err;
-            console.log(result);
+            //console.log(result);
             //res.send(result);
             cb(result);
             db.close();
