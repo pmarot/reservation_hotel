@@ -83,7 +83,7 @@ $('document').ready(function () {
         console.log(nom);
         var id_hotel = $(this).data("id");
         console.log(id_hotel);
-        var url = "http://localhost:3012/reserved";
+        var url = "http://localhost:" + port + "/reserved";
 
         if(dateArriver && dateDepart && nom && id_hotel && url !== undefined) {
             $.post(url, {
