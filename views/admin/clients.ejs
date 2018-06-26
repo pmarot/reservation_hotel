@@ -1,0 +1,48 @@
+<!-- ajout de la partie head de la structure -->
+<% include head.ejs %>
+
+    <body>
+        <!-- ajout de la partie menu et de la barre de recherche de la structure -->
+        <% include header.ejs %>
+            <!-- Création du tableau des hotels -->
+            <div class="text-center m-5">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertUser">Ajout client</button>
+            </div>
+            <table class="table w-75 mt-5 text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Id Clients</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Boucle d'ajout des hotels -->
+                    <% clients.forEach(function(client){ %>
+                        <tr>
+                            <td class="text-center">
+                                <%= client._id %>
+                            </td>
+                            <td class="text-center">
+                                <%= client.nom %>
+                            </td>
+                            <td>
+                                <a data-toggle="modal" data-target="#updateModal" data-objid="<%= client._id %>" data-id="<%= client.id %>" data-name="<%= client.nom %>"
+                                    data-img="<%= client.img%>" data-etoiles="<%= client.Nb_etoiles%>" data-secteur="<%= client.id_secteur%>">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="delete" data-objid="<%= client._id %>">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+            <!-- ajout de la partie footer de la structure -->
+            <% include footer.ejs %>
+    </body>
