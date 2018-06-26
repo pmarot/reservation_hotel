@@ -1,7 +1,7 @@
 $('document').ready(function () {
     // appel de la fonction pour ajout des etoiles automatiquement pour les hotels
     stars();
-    var port = 3003;
+    var port = 3009;
  
 
   //Fonction pour modifier les données dans la database hotels

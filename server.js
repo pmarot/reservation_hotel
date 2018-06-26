@@ -1,7 +1,7 @@
 // initialisation du server
 const express = require('express');
 const app = express();
-var port = 3012;
+var port = 3009;
 var bodyParser = require('body-parser');
 // connexion a bdd
 const mongodb = require('mongodb');
@@ -113,6 +113,7 @@ app.post('/reserved', function (req, res) {
         database.close();
     })
 });
+
 function get_hotels(cb){
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -140,6 +141,7 @@ app.get('/get_secteurs', function(req,res){
 });
 
 
+/* Récuperation des secteurs */
 function get_secteurs(cb){
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
@@ -189,8 +191,7 @@ app.get('/admin/ajout-hotel', function (req, res) {
 });
 
 
-//Éditer les données des hôtels
-
+// Route qui édite les données des hôtels
 app.put('/update', function (req, res) {
 
     var monid = parseInt(req.body.donnee1);
@@ -218,7 +219,7 @@ app.put('/update', function (req, res) {
     });
 });
 
-//Ajouter un nouvel hôtel
+// Route qui ajoute un hotel
 app.post('/add', function (req, res) {
 
     var monid = parseInt(req.body.donnee1);
@@ -246,8 +247,7 @@ app.post('/add', function (req, res) {
     // res.send("toto");
 });
 
-
-
+// Route qui affiche les hotels
 app.get('/admin/hotels', function (req, res) {
     get_hotels(function(hotels){
         //console.log(hotels);
@@ -258,7 +258,7 @@ app.get('/admin/hotels', function (req, res) {
     });
 });
 
-
+// Route de la page admin
 MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("reservation");
@@ -270,9 +270,8 @@ MongoClient.connect(url, function (err, db) {
         res.render('admin/index', {hotels:hotels,clients:clients,reservations:reservations});
     });
 });
-/**
- * Route del d'un doc via le formulaire 
- */
+
+// Route qui supprime un hotel en fonction de l'ID dans l'url 
 app.delete('/hotels/:_id', function (req, res) {
     const _id = req.params._id;
   
